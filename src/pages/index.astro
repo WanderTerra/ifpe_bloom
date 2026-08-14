@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/base-layout.astro';
+import FlowerMark from '../components/flower-mark.astro';
+import SectionMark from '../components/section-mark.astro';
+import DashboardMockup from '../components/dashboard-mockup.astro';
+
+const pillars = [
+  {
+    title: 'Data strategy',
+    body: "We help you decide what's worth measuring, and build a realistic roadmap to get there — no data-maturity buzzwords, just a plan you can act on.",
+  },
+  {
+    title: 'Dashboards & reporting',
+    body: 'Scattered spreadsheets become clear, decision-ready dashboards your whole team can trust and actually use day to day.',
+  },
+  {
+    title: 'Digital transformation',
+    body: 'Practical, vendor-agnostic advice on the tools and processes that will genuinely move your business forward — not just the newest thing.',
+  },
+];
+
+const values = [
+  {
+    title: 'Professional',
+    body: 'Rigorous thinking and clear delivery, from the first conversation to the final handover.',
+  },
+  {
+    title: 'Accessible',
+    body: 'No jargon for the sake of it. We explain the "why" behind every recommendation.',
+  },
+  {
+    title: 'Wise',
+    body: 'Years of pattern-matching across industries, applied to your specific context — not a generic playbook.',
+  },
+  {
+    title: 'Trustworthy',
+    body: "We say what we'll do, and do what we say. Your goals come before our billable hours.",
+  },
+];
+---
+
+<BaseLayout
+  title="Technology & data strategy for growing businesses"
+  description="IFPÊ Bloom is a London-based tech & data consultancy helping small and medium businesses grow through personalised, strategic, human-centred technology — from concept to delivery."
+>
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow">Dashboards and Data Strategy</p>
+        <h1>Technology and data strategy that helps your business bloom.</h1>
+        <p class="hero__lede">
+          We help small and medium businesses turn scattered data and stalled
+          tech decisions into clarity, momentum, and growth — with a
+          personalised, strategic, human-centred approach from concept to
+          delivery.
+        </p>
+        <div class="hero__actions">
+          <a href="/contact" class="button button--primary">Start a conversation</a>
+          <a href="/services" class="button button--outline">See how we work</a>
+        </div>
+      </div>
+      <div class="hero__art">
+        <FlowerMark size="22rem" interactive />
+      </div>
+    </div>
+  </section>
+
+  <section class="section showcase">
+    <div class="container showcase__inner">
+      <div class="showcase__copy">
+        <p class="eyebrow">What this looks like</p>
+        <h2>From scattered spreadsheets to one clear view</h2>
+        <p>
+          An example of the kind of dashboard we build — pulling scattered
+          data into a single, decision-ready view your team can actually
+          trust and use day to day.
+        </p>
+      </div>
+      <div class="showcase__art">
+        <DashboardMockup />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">What we do</p>
+      <h2>Three ways we help you grow</h2>
+      <div class="pillars">
+        {pillars.map((pillar, index) => (
+          <article class="pillar">
+            <span class="pillar__index">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.body}</p>
+          </article>
+        ))}
+      </div>
+      <a href="/services" class="link-arrow">Explore our services →</a>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="eyebrow">Why IFPÊ Bloom</p>
+      <h2>A consultancy that behaves like a partner, not a vendor</h2>
+      <SectionMark />
+      <div class="values">
+        {values.map((value) => (
+          <div class="value">
+            <h3>{value.title}</h3>
+            <p>{value.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark cta">
+    <div class="container cta__inner">
+      <div>
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Let's talk about where your data and technology could take you.</h2>
+      </div>
+      <a href="/contact" class="button button--primary">Start a conversation</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-xl) var(--space-lg);
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-alt) 100%);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .hero__lede {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    max-width: 38rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+
+  .hero__art {
+    justify-self: center;
+  }
+
+  .showcase__inner {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .showcase__copy p {
+    color: var(--color-text-muted);
+    max-width: 26rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: var(--border-hairline);
+  }
+
+  .pillar__index {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-accent);
+    font-size: 1.5rem;
+  }
+
+  .pillar h3 {
+    margin-top: var(--space-xs);
+  }
+
+  .link-arrow {
+    display: inline-block;
+    margin-top: var(--space-md);
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.15rem;
+  }
+
+  .values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md) var(--space-lg);
+    margin-top: var(--space-md);
+  }
+
+  .value h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .value p {
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  .cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .cta__inner h2 {
+    margin-bottom: 0;
+    max-width: 36rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__art {
+      order: -1;
+    }
+
+    .showcase__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .showcase__art {
+      order: -1;
+    }
+
+    .pillars,
+    .values {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

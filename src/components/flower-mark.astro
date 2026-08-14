@@ -1,0 +1,97 @@
+---
+/**
+ * FlowerMark — the real IFPÊ Bloom symbol, traced from the official artwork
+ * (src/assets/logos/ifpe-bloom-symbol-beige.png), not a freehand redraw.
+ *
+ * How it was made: the source PNG was split into exact-colour masks (yellow
+ * petals vs. green leaf) and vectorised with potrace, per colour. That
+ * produced 3 separate petal contours and 1 leaf contour — matching the
+ * real logo's construction — so each shape can be animated independently.
+ * See scripts/trace-logo.mjs and scripts/trace-svg.mjs for the process.
+ *
+ * Purely decorative (aria-hidden) — the accessible name lives in the real
+ * "IFPÊ Bloom" text next to it.
+ */
+interface Props {
+  size?: string;
+  interactive?: boolean;
+  /** 'color' (default, for white/beige backgrounds) or 'reversed' (single
+   * light colour, for dark backgrounds) — per BRAND.md's logo usage rule. */
+  tone?: 'color' | 'reversed';
+  class?: string;
+}
+
+const { size = '20rem', interactive = false, tone = 'color', class: className } = Astro.props;
+const petalFill = tone === 'reversed' ? '#F3EEE3' : '#F4C21E';
+const leafFill = tone === 'reversed' ? '#F3EEE3' : '#6A7F4B';
+---
+
+<svg
+  class:list={['flower-mark', { 'flower-mark--interactive': interactive }, className]}
+  style={`--flower-size: ${size}`}
+  viewBox="248 264 870 837"
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    class="flower-mark__petal flower-mark__petal--1"
+    fill={petalFill}
+    d="M 799.500 285.090 C 674.931 292.151, 567.897 335.836, 479.979 415.500 C 446.058 446.236, 412.076 488.643, 391.177 526.319 C 385.935 535.769, 370.306 572.648, 371.179 573.507 C 371.356 573.681, 376.115 575.660, 381.756 577.906 C 435.724 599.391, 484.769 627.585, 526 660.826 C 531.775 665.482, 537.052 669.722, 537.727 670.249 C 538.591 670.923, 539.776 670.215, 541.727 667.861 C 573.103 629.990, 634.244 574.154, 671 549.805 C 728.017 512.034, 802.869 483.795, 874.500 473.030 C 882.200 471.872, 889.962 470.697, 891.750 470.418 L 895 469.909 894.999 462.205 C 894.995 404.661, 883.086 343.091, 862.802 295.750 L 857.768 284 835.634 284.148 C 823.460 284.230, 807.200 284.654, 799.500 285.090"
+  ></path>
+  <path
+    class="flower-mark__petal flower-mark__petal--2"
+    fill={petalFill}
+    d="M 930 514.590 C 928.075 514.804, 920.875 515.460, 914 516.048 C 836.604 522.667, 756.641 549.684, 696.339 589.590 C 661.098 612.911, 598.404 670.689, 574.142 702.206 C 572.988 703.705, 573.963 705.219, 582.194 714.706 C 643.791 785.702, 675.961 870.296, 679.847 971.495 L 680.500 988.489 687 990.827 C 733.500 1007.553, 797.042 1016.070, 853.675 1013.169 C 874.854 1012.084, 899.551 1009.844, 906.420 1008.386 C 910.261 1007.571, 949.844 968.071, 967.435 947.500 C 1048.861 852.276, 1092.928 746.561, 1097.906 634.500 C 1098.900 612.130, 1097.914 581.916, 1095.573 562.959 C 1094.221 552.013, 1090.242 527.907, 1089.699 527.366 C 1088.425 526.099, 1043.760 518.781, 1023 516.439 C 1009.376 514.901, 939.675 513.516, 930 514.590"
+  ></path>
+  <path
+    class="flower-mark__petal flower-mark__petal--3"
+    fill={petalFill}
+    d="M 283.148 606.272 C 268.999 672.749, 273.897 750.592, 296.041 811.175 L 299.212 819.849 306.856 820.482 C 391.014 827.454, 460.587 848.447, 521.321 885.194 C 542.346 897.916, 557.044 908.719, 579.679 928.087 C 594.662 940.908, 606.862 950.096, 619.304 957.931 C 633.492 966.865, 632.437 967.079, 631.647 955.418 C 624.734 853.317, 580.312 766.086, 502 700.833 C 445.238 653.535, 367.737 615.826, 287.912 596.665 C 285.353 596.050, 285.301 596.157, 283.148 606.272"
+  ></path>
+  <path
+    class="flower-mark__petal flower-mark__leaf"
+    fill={leafFill}
+    d="M 268 867.752 C 268 870.758, 275.908 891.101, 281.507 902.500 C 322.803 986.564, 412.059 1044.493, 539.500 1069.945 C 581.538 1078.341, 613.506 1081.452, 657.500 1081.428 C 707.158 1081.401, 745.927 1076.754, 791.500 1065.365 C 808.061 1061.226, 810.096 1060.004, 800.450 1059.989 C 770.930 1059.944, 716.101 1049.891, 679.603 1037.832 C 629.885 1021.406, 590.129 998.734, 547.661 962.591 C 485.136 909.377, 414.195 879.657, 325.500 869.521 C 307.719 867.489, 268 866.267, 268 867.752"
+  ></path>
+</svg>
+
+<style>
+  .flower-mark {
+    width: var(--flower-size);
+    height: auto;
+    display: block;
+  }
+
+  .flower-mark__petal {
+    transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* Style "B" — bloom + lift: petals ease apart with a light rotation. */
+  .flower-mark--interactive:hover .flower-mark__petal--1,
+  .flower-mark--interactive:focus-visible .flower-mark__petal--1 {
+    transform: translate(-10px, -18px) rotate(-4deg);
+  }
+
+  .flower-mark--interactive:hover .flower-mark__petal--2,
+  .flower-mark--interactive:focus-visible .flower-mark__petal--2 {
+    transform: translate(18px, 8px) rotate(5deg);
+  }
+
+  .flower-mark--interactive:hover .flower-mark__petal--3,
+  .flower-mark--interactive:focus-visible .flower-mark__petal--3 {
+    transform: translate(-14px, 10px) rotate(-6deg);
+  }
+
+  .flower-mark--interactive:hover .flower-mark__leaf,
+  .flower-mark--interactive:focus-visible .flower-mark__leaf {
+    transform: translate(-8px, 16px) rotate(6deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flower-mark__petal {
+      transition: none;
+    }
+  }
+</style>

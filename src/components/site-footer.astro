@@ -1,0 +1,129 @@
+---
+import FlowerMark from './flower-mark.astro';
+
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <FlowerMark size="2.75rem" tone="reversed" />
+      <div>
+        <p class="site-footer__wordmark"><strong>IFPÊ</strong> Bloom</p>
+        <p class="site-footer__tagline">Dashboards and Data Strategy</p>
+      </div>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <ul>
+        {footerLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-footer__contact">
+      <p class="eyebrow">Get in touch</p>
+      <a href="mailto:hello@ifpebloom.com">hello@ifpebloom.com</a>
+      <p class="site-footer__location">London, United Kingdom</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <hr class="hairline site-footer__rule" />
+    <p class="site-footer__legal">© {year} IFPÊ Bloom. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-surface-dark);
+    color: var(--color-text-on-dark);
+    padding-block: var(--space-xl) var(--space-md);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .site-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .site-footer__wordmark {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .site-footer__wordmark strong {
+    font-weight: 700;
+  }
+
+  .site-footer__tagline {
+    margin: 0.2rem 0 0;
+    color: var(--color-olive);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .site-footer__nav a,
+  .site-footer__contact a {
+    text-decoration: none;
+    color: var(--color-text-on-dark);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+  }
+
+  .site-footer__nav a:hover,
+  .site-footer__contact a:hover {
+    color: var(--color-accent);
+  }
+
+  .site-footer__contact .eyebrow {
+    margin-bottom: 0.6rem;
+  }
+
+  .site-footer__location {
+    margin: 0.6rem 0 0;
+    color: var(--color-olive);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__rule {
+    border-color: rgba(243, 238, 227, 0.2);
+  }
+
+  .site-footer__legal {
+    margin: var(--space-sm) 0 0;
+    font-size: 0.8rem;
+    color: var(--color-olive);
+  }
+
+  @media (max-width: 780px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+</style>

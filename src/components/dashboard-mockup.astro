@@ -1,0 +1,174 @@
+---
+/**
+ * DashboardMockup — an illustrative example dashboard, built entirely in
+ * HTML/CSS/SVG (no screenshots, no stock imagery). It stands in for real
+ * product photography we don't have yet: it shows the *kind* of dashboard
+ * IFPÊ Bloom builds for clients, using placeholder figures — not real
+ * company or client data. Purely decorative (aria-hidden); the surrounding
+ * copy carries the meaning.
+ */
+const kpis = [
+  { label: 'Monthly active users', value: '12.4k', delta: '+8%' },
+  { label: 'Data quality score', value: '94%', delta: '+3%' },
+  { label: 'Reports automated', value: '27', delta: '+5' },
+];
+
+const bars = [38, 52, 46, 61, 58, 74, 69, 88];
+const maxBar = Math.max(...bars);
+---
+
+<div class="dashboard-mockup" aria-hidden="true">
+  <div class="dashboard-mockup__bar">
+    <span class="dashboard-mockup__dot"></span>
+    <span class="dashboard-mockup__title">Client dashboard — Q3 overview</span>
+    <span class="dashboard-mockup__badge">Example</span>
+  </div>
+
+  <div class="dashboard-mockup__body">
+    <div class="dashboard-mockup__kpis">
+      {kpis.map((kpi) => (
+        <div class="dashboard-mockup__kpi">
+          <p class="dashboard-mockup__kpi-label">{kpi.label}</p>
+          <p class="dashboard-mockup__kpi-value">{kpi.value}</p>
+          <span class="dashboard-mockup__kpi-delta">{kpi.delta}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="dashboard-mockup__chart">
+      <div class="dashboard-mockup__bars">
+        {bars.map((value, index) => (
+          <div
+            class="dashboard-mockup__bar-col"
+            style={`height: ${(value / maxBar) * 100}%`}
+            data-accent={index === bars.length - 1 ? 'true' : undefined}
+          ></div>
+        ))}
+      </div>
+      <div class="dashboard-mockup__baseline"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dashboard-mockup {
+    background: var(--color-surface);
+    border: var(--border-hairline);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(73, 72, 67, 0.06);
+  }
+
+  .dashboard-mockup__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.1rem;
+    border-bottom: var(--border-hairline);
+    background: var(--color-surface-alt);
+  }
+
+  .dashboard-mockup__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--color-accent-alt);
+    flex-shrink: 0;
+  }
+
+  .dashboard-mockup__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-text);
+  }
+
+  .dashboard-mockup__badge {
+    margin-left: auto;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: var(--border-hairline);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+
+  .dashboard-mockup__body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .dashboard-mockup__kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .dashboard-mockup__kpi {
+    border: var(--border-hairline);
+    border-radius: 10px;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .dashboard-mockup__kpi-label {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+  }
+
+  .dashboard-mockup__kpi-value {
+    margin: 0.3rem 0 0.2rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--color-text);
+  }
+
+  .dashboard-mockup__kpi-delta {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-accent-alt);
+  }
+
+  .dashboard-mockup__chart {
+    border: var(--border-hairline);
+    border-radius: 10px;
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .dashboard-mockup__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.55rem;
+    height: 7.5rem;
+  }
+
+  .dashboard-mockup__bar-col {
+    flex: 1;
+    min-height: 4%;
+    background: var(--color-accent);
+    border-radius: 3px 3px 0 0;
+  }
+
+  .dashboard-mockup__bar-col[data-accent='true'] {
+    background: var(--color-accent-alt);
+  }
+
+  .dashboard-mockup__baseline {
+    margin-top: 0.6rem;
+    border-top: var(--border-hairline);
+  }
+
+  @media (max-width: 560px) {
+    .dashboard-mockup__kpis {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

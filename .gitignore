@@ -1,0 +1,22 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# intermediate output from scripts/trace-*.mjs (regeneratable — see script
+# header comments; requires `npm install pngjs potrace --no-save` to rerun)
+scripts/out/

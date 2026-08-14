@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/base-layout.astro';
+import FlowerMark from '../components/flower-mark.astro';
+import SectionMark from '../components/section-mark.astro';
+
+const values = [
+  { title: 'Professional', body: 'Rigorous thinking and clear delivery, every time.' },
+  { title: 'Accessible', body: 'Plain language over jargon — always.' },
+  { title: 'Wise', body: 'Pattern-matched experience, applied to your context.' },
+  { title: 'Trustworthy', body: 'We say what we’ll do, and do what we say.' },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="IFPÊ Bloom is a London-based tech & data consultancy named after the ipê-amarelo — a symbol of growth and resilience. Here's our story and how we work."
+>
+  <section class="page-intro">
+    <div class="container page-intro__grid">
+      <div>
+        <p class="eyebrow">About us</p>
+        <h1>Named after a tree that blooms in its own time</h1>
+        <p class="page-intro__lede">
+          IFPÊ Bloom is a technology and data consultancy based in London,
+          helping small and medium businesses grow through personalised,
+          strategic, human-centred technology — from concept to delivery.
+        </p>
+      </div>
+      <div class="page-intro__art">
+        <FlowerMark size="12rem" interactive />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container story">
+      <p class="eyebrow">Where the name comes from</p>
+      <h2>The ipê-amarelo</h2>
+      <p>
+        Our symbol is an abstracted ipê-amarelo — the yellow trumpet tree
+        that bursts into bloom across Brazil each year, often leafless,
+        striking, and impossible to miss. It's a fitting emblem for what we
+        do: helping businesses find their moment of clear, visible growth,
+        even after a long quiet stretch of uncertainty.
+      </p>
+      <p>
+        The curves in our mark also nod gently to the sweep of Brasília
+        Cathedral's architecture and the colours of a sunset — a small
+        reminder that thoughtful design and thoughtful strategy come from
+        the same place: paying attention to what's really there.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="eyebrow">How we show up</p>
+      <h2>Four things you can expect from us</h2>
+      <SectionMark />
+      <div class="values">
+        {values.map((value) => (
+          <div class="value">
+            <h3>{value.title}</h3>
+            <p>{value.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark cta">
+    <div class="container cta__inner">
+      <div>
+        <p class="eyebrow">Let's work together</p>
+        <h2>We'd love to hear what you're working on.</h2>
+      </div>
+      <a href="/contact" class="button button--primary">Start a conversation</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro {
+    padding-block: var(--space-xl) var(--space-lg);
+    background: var(--color-surface-alt);
+  }
+
+  .page-intro__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .page-intro__lede {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 38rem;
+  }
+
+  .page-intro__art {
+    justify-self: center;
+  }
+
+  .story {
+    max-width: var(--content-width-narrow);
+  }
+
+  .values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .value h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .value p {
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+
+  .cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .cta__inner h2 {
+    margin-bottom: 0;
+    max-width: 36rem;
+  }
+
+  @media (max-width: 900px) {
+    .page-intro__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-intro__art {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

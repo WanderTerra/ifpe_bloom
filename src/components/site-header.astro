@@ -1,0 +1,184 @@
+---
+import FlowerMark from './flower-mark.astro';
+
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand" aria-label="IFPÊ Bloom — home">
+      <FlowerMark size="2.25rem" />
+      <span class="site-header__wordmark"><strong>IFPÊ</strong> Bloom</span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul>
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              aria-current={currentPath === link.href ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a href="/contact" class="button button--primary site-header__cta">Start a conversation</a>
+
+    <button type="button" class="site-header__toggle" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="visually-hidden">Toggle menu</span>
+      <span class="site-header__toggle-bar"></span>
+      <span class="site-header__toggle-bar"></span>
+      <span class="site-header__toggle-bar"></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="site-header__mobile-nav" aria-label="Primary mobile" hidden>
+    <ul>
+      {navLinks.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+      <li><a href="/contact" class="button button--primary">Start a conversation</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--border-hairline);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding-block: var(--space-xs);
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--color-text);
+    margin-right: auto;
+  }
+
+  .site-header__wordmark {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+  }
+
+  .site-header__wordmark strong {
+    font-weight: 700;
+  }
+
+  .site-header__nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header__nav a {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-header__nav a:hover,
+  .site-header__nav a[aria-current='page'] {
+    color: var(--color-text);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .site-header__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: transparent;
+    border: var(--border-hairline);
+    border-radius: var(--radius);
+    padding: 0;
+  }
+
+  .site-header__toggle-bar {
+    width: 1.1rem;
+    height: 2px;
+    background: var(--color-text);
+    margin-inline: auto;
+  }
+
+  .site-header__mobile-nav {
+    border-top: var(--border-hairline);
+    background: var(--color-surface);
+  }
+
+  .site-header__mobile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .site-header__mobile-nav a {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 780px) {
+    .site-header__nav,
+    .site-header__cta {
+      display: none;
+    }
+
+    .site-header__toggle {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 781px) {
+    .site-header__mobile-nav {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.site-header__toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    if (mobileNav) mobileNav.hidden = expanded;
+  });
+</script>

@@ -1,0 +1,26 @@
+---
+// Section divider: the real flower mark with a short green line trailing
+// close behind it, echoing the brand's yellow-petal / green-leaf pairing.
+import FlowerMark from './flower-mark.astro';
+---
+
+<div class="section-mark">
+  <FlowerMark size="3rem" interactive />
+  <span class="section-mark__line" aria-hidden="true"></span>
+</div>
+
+<style>
+  .section-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block: var(--space-md);
+  }
+
+  .section-mark__line {
+    width: 4.5rem;
+    height: 2px;
+    background: var(--color-accent-alt);
+    border-radius: 1px;
+  }
+</style>

@@ -1,0 +1,238 @@
+/* ==========================================================================
+   IFPÊ Bloom — Design tokens & base styles
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Rethink Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/rethink-sans-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('../assets/fonts/source-serif-4-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('../assets/fonts/source-serif-4-italic-variable.woff2') format('woff2');
+}
+
+:root {
+  /* Brand colours — see BRAND.md */
+  --color-yellow: #f4c21e;
+  --color-green: #6a7f4b;
+  --color-beige: #f3eee3;
+  --color-olive: #767363;
+  --color-grey-light: #d9d9d9;
+  --color-grey-dark: #494843;
+  --color-white: #ffffff;
+
+  /* Semantic aliases */
+  --color-surface: var(--color-white);
+  --color-surface-alt: var(--color-beige);
+  --color-surface-dark: var(--color-grey-dark);
+  --color-text: var(--color-grey-dark);
+  --color-text-muted: var(--color-olive);
+  --color-text-on-dark: var(--color-beige);
+  --color-border: var(--color-grey-light);
+  --color-accent: var(--color-yellow);
+  --color-accent-alt: var(--color-green);
+
+  /* Type */
+  --font-display: 'Rethink Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
+
+  /* Layout */
+  --content-width: 72rem;
+  --content-width-narrow: 46rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1.25rem;
+  --space-md: 2rem;
+  --space-lg: 3.5rem;
+  --space-xl: 6rem;
+  --space-2xl: 9rem;
+  --radius: 6px;
+  --border-hairline: 1px solid var(--color-border);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+p {
+  margin: 0 0 var(--space-sm);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 2px;
+  background: var(--color-accent);
+  display: inline-block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.section {
+  padding-block: var(--space-xl);
+}
+
+.section--alt {
+  background: var(--color-surface-alt);
+}
+
+.section--dark {
+  background: var(--color-surface-dark);
+  color: var(--color-text-on-dark);
+}
+
+.section--dark .eyebrow {
+  color: var(--color-beige);
+}
+
+.hairline {
+  border: none;
+  border-top: var(--border-hairline);
+  margin: 0;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85em 1.6em;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: var(--color-grey-dark);
+}
+
+.button--primary:hover {
+  background: #e0b011;
+}
+
+.button--outline {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.button--outline:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.section--dark .button--outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --space-xl: 3.5rem;
+  }
+
+  .container {
+    padding-inline: var(--space-sm);
+  }
+}

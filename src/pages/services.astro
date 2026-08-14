@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/base-layout.astro';
+import SectionMark from '../components/section-mark.astro';
+import DashboardMockup from '../components/dashboard-mockup.astro';
+
+const services = [
+  {
+    title: 'Data strategy',
+    summary: 'A clear, honest plan for what to measure — and why it matters.',
+    body: "Most businesses don't have a data problem, they have a clarity problem. We work with your team to define the handful of metrics that actually drive decisions, map where that data lives today, and set a realistic roadmap to close the gaps — sequenced by impact, not by what's trendy.",
+    deliverables: ['Data maturity assessment', 'Metrics & KPI framework', 'Prioritised roadmap'],
+  },
+  {
+    title: 'Dashboards & reporting',
+    summary: 'Reporting your team opens because it actually helps.',
+    body: 'We design and build dashboards that turn scattered spreadsheets and disconnected tools into a single, trustworthy view — built around the decisions your team needs to make, not around every metric a vendor could offer.',
+    deliverables: ['Dashboard design & build', 'Data source integration', 'Team training & handover'],
+    visual: true,
+  },
+  {
+    title: 'Digital transformation consulting',
+    summary: 'Practical modernisation, sequenced for your reality.',
+    body: 'Technology decisions should serve the business, not the other way round. We assess your current tools and processes, identify where technology is genuinely holding you back, and advise on a vendor-agnostic path forward that fits your budget and your team.',
+    deliverables: ['Process & tooling audit', 'Vendor-agnostic recommendations', 'Implementation support'],
+  },
+  {
+    title: 'Technology advisory',
+    summary: 'A strategic sounding board, on an ongoing basis.',
+    body: "For businesses that want a trusted, technical voice in the room without hiring a full-time CTO. We join key decisions, review plans before they're costly to reverse, and help you ask the right questions of vendors and hires.",
+    deliverables: ['Ongoing strategic guidance', 'Vendor & hiring input', 'Quarterly reviews'],
+  },
+];
+---
+
+<BaseLayout
+  title="Services"
+  description="Data strategy, dashboards & reporting, digital transformation consulting, and technology advisory — practical, human-centred services for growing businesses."
+>
+  <section class="page-intro">
+    <div class="container">
+      <p class="eyebrow">Services</p>
+      <h1>Support that meets you where you are</h1>
+      <p class="page-intro__lede">
+        Every engagement starts with listening. From there, we bring together
+        the services below in whatever combination makes sense for your
+        business — never a fixed package for its own sake.
+      </p>
+    </div>
+  </section>
+
+  <section class="section services">
+    <div class="container">
+      {services.map((service, index) => (
+        <article class="service">
+          <div class="service__index">{String(index + 1).padStart(2, '0')}</div>
+          <div class:list={['service__content', { 'service__content--visual': service.visual }]}>
+            <div class="service__text">
+              <h2>{service.title}</h2>
+              <p class="service__summary">{service.summary}</p>
+              <p>{service.body}</p>
+              <ul class="service__deliverables">
+                {service.deliverables.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            {service.visual && (
+              <div class="service__visual">
+                <DashboardMockup />
+              </div>
+            )}
+          </div>
+          {index < services.length - 1 && <hr class="hairline service__rule" />}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container process">
+      <p class="eyebrow">How we work</p>
+      <h2>A simple process, kept honest</h2>
+      <SectionMark />
+      <ol class="process__steps">
+        <li><strong>Listen.</strong> We start with your goals and constraints, not a template.</li>
+        <li><strong>Diagnose.</strong> We assess what's actually happening in your data and tools today.</li>
+        <li><strong>Build.</strong> We design and deliver the strategy, dashboards, or advisory support you need.</li>
+        <li><strong>Grow.</strong> We hand over cleanly, with your team equipped to keep going without us.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--dark cta">
+    <div class="container cta__inner">
+      <div>
+        <p class="eyebrow">Not sure where to start?</p>
+        <h2>Tell us what's not working — we'll help you find the right starting point.</h2>
+      </div>
+      <a href="/contact" class="button button--primary">Start a conversation</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro {
+    padding-block: var(--space-xl) var(--space-lg);
+    background: var(--color-surface-alt);
+  }
+
+  .page-intro__lede {
+    max-width: 40rem;
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+  }
+
+  .service {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: var(--space-md);
+  }
+
+  .service__index {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+  }
+
+  .service__content {
+    max-width: 42rem;
+  }
+
+  .service__content--visual {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 26rem) minmax(0, 22rem);
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .service__visual {
+    padding-top: 2.4rem;
+  }
+
+  .service__summary {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-text);
+  }
+
+  .service__deliverables {
+    margin: var(--space-sm) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .service__deliverables li {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+    border: var(--border-hairline);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+  }
+
+  .service__rule {
+    grid-column: 1 / -1;
+    margin-block: var(--space-lg);
+  }
+
+  .process__steps {
+    max-width: 42rem;
+    margin: var(--space-md) 0 0;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .process__steps strong {
+    font-family: var(--font-display);
+    color: var(--color-text);
+  }
+
+  .cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .cta__inner h2 {
+    margin-bottom: 0;
+    max-width: 36rem;
+  }
+
+  @media (max-width: 900px) {
+    .service__content--visual {
+      grid-template-columns: 1fr;
+    }
+
+    .service__visual {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .service {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
