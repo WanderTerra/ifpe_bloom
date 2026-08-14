@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/base-layout.astro';
 import FlowerMark from '../components/flower-mark.astro';
 import SectionMark from '../components/section-mark.astro';
 import DashboardMockup from '../components/dashboard-mockup.astro';
+import { withBase } from '../utils/url';
 
 const pillars = [
   {
@@ -55,8 +56,8 @@ const values = [
           delivery.
         </p>
         <div class="hero__actions">
-          <a href="/contact" class="button button--primary">Start a conversation</a>
-          <a href="/services" class="button button--outline">See how we work</a>
+          <a href={withBase('/contact')} class="button button--primary">Start a conversation</a>
+          <a href={withBase('/services')} class="button button--outline">See how we work</a>
         </div>
       </div>
       <div class="hero__art">
@@ -95,7 +96,7 @@ const values = [
           </article>
         ))}
       </div>
-      <a href="/services" class="link-arrow">Explore our services →</a>
+      <a href={withBase('/services')} class="link-arrow">Explore our services →</a>
     </div>
   </section>
 
@@ -121,7 +122,7 @@ const values = [
         <p class="eyebrow">Ready when you are</p>
         <h2>Let's talk about where your data and technology could take you.</h2>
       </div>
-      <a href="/contact" class="button button--primary">Start a conversation</a>
+      <a href={withBase('/contact')} class="button button--primary">Start a conversation</a>
     </div>
   </section>
 </BaseLayout>

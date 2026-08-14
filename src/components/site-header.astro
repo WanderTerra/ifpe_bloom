@@ -1,5 +1,6 @@
 ---
 import FlowerMark from './flower-mark.astro';
+import { withBase } from '../utils/url';
 
 const navLinks = [
   { href: '/services', label: 'Services' },
@@ -12,7 +13,7 @@ const currentPath = Astro.url.pathname;
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="/" class="site-header__brand" aria-label="IFPÊ Bloom — home">
+    <a href={withBase('/')} class="site-header__brand" aria-label="IFPÊ Bloom — home">
       <FlowerMark size="2.25rem" />
       <span class="site-header__wordmark"><strong>IFPÊ</strong> Bloom</span>
     </a>
@@ -22,8 +23,8 @@ const currentPath = Astro.url.pathname;
         {navLinks.map((link) => (
           <li>
             <a
-              href={link.href}
-              aria-current={currentPath === link.href ? 'page' : undefined}
+              href={withBase(link.href)}
+              aria-current={currentPath === withBase(link.href) ? 'page' : undefined}
             >
               {link.label}
             </a>
@@ -32,7 +33,7 @@ const currentPath = Astro.url.pathname;
       </ul>
     </nav>
 
-    <a href="/contact" class="button button--primary site-header__cta">Start a conversation</a>
+    <a href={withBase('/contact')} class="button button--primary site-header__cta">Start a conversation</a>
 
     <button type="button" class="site-header__toggle" aria-expanded="false" aria-controls="mobile-nav">
       <span class="visually-hidden">Toggle menu</span>
@@ -45,9 +46,9 @@ const currentPath = Astro.url.pathname;
   <nav id="mobile-nav" class="site-header__mobile-nav" aria-label="Primary mobile" hidden>
     <ul>
       {navLinks.map((link) => (
-        <li><a href={link.href}>{link.label}</a></li>
+        <li><a href={withBase(link.href)}>{link.label}</a></li>
       ))}
-      <li><a href="/contact" class="button button--primary">Start a conversation</a></li>
+      <li><a href={withBase('/contact')} class="button button--primary">Start a conversation</a></li>
     </ul>
   </nav>
 </header>

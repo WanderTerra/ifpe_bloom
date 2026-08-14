@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/base-layout.astro';
 import SectionMark from '../components/section-mark.astro';
 import DashboardMockup from '../components/dashboard-mockup.astro';
+import { withBase } from '../utils/url';
 
 const services = [
   {
@@ -96,7 +97,7 @@ const services = [
         <p class="eyebrow">Not sure where to start?</p>
         <h2>Tell us what's not working — we'll help you find the right starting point.</h2>
       </div>
-      <a href="/contact" class="button button--primary">Start a conversation</a>
+      <a href={withBase('/contact')} class="button button--primary">Start a conversation</a>
     </div>
   </section>
 </BaseLayout>

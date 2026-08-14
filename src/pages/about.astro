@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/base-layout.astro';
 import FlowerMark from '../components/flower-mark.astro';
 import SectionMark from '../components/section-mark.astro';
+import { withBase } from '../utils/url';
 
 const values = [
   { title: 'Professional', body: 'Rigorous thinking and clear delivery, every time.' },
@@ -74,7 +75,7 @@ const values = [
         <p class="eyebrow">Let's work together</p>
         <h2>We'd love to hear what you're working on.</h2>
       </div>
-      <a href="/contact" class="button button--primary">Start a conversation</a>
+      <a href={withBase('/contact')} class="button button--primary">Start a conversation</a>
     </div>
   </section>
 </BaseLayout>
